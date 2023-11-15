@@ -1,7 +1,8 @@
-#include "stdbool.h"
-
 #ifndef PROJETLO21_RPRÉMISSE_H
 #define PROJETLO21_RPRÉMISSE_H
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 typedef struct Prop {
     char *phrase;
