@@ -17,14 +17,14 @@ typedef struct pElem {
 typedef premElement *premisse;
 
 typedef struct {
-    premisse *prem;
+    premisse prem;
     Proposition *conclusion;
 }Regle;
 
 Regle *creerRegle();
-void ajouterqP(ListeProp *premisse, Proposition prop);
+void ajouterqP(preElement *premisse, Proposition prop);
 Regle *ajouterprop(Regle *regle, Proposition prop);
-bool appartient(ListeProp *premisse, Proposition prop);
+bool appartient(preElement *premisse, Proposition prop);
 Regle *suppprop(Regle *regle);
 bool estVidePremisse(Regle *regle);
 
