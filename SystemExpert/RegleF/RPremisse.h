@@ -4,24 +4,24 @@
 #define PROJETLO21_RPRÉMISSE_H
 
 typedef struct Prop {
-    char phrase[255];
+    char *phrase;
 }Proposition;
 
-typedef struct LP {
+typedef struct pElem {
     Proposition proposition;
-    struct LP *next;
-    struct LP *before;
-}ListeProp;
+    struct pElem *next;
+    struct pElem *before;
+}premElement;
 
-typedef ListeProp *premisse;
+typedef premElement *premisse;
 
-typedef struct R{
-    ListeProp *premisse;
+typedef struct {
+    premisse *prem;
     Proposition *conclusion;
 }Regle;
 
 Regle *creerRegle();
-void ajouterqP(ListeProp **premisse, Proposition prop);
+void ajouterqP(ListeProp *premisse, Proposition prop);
 Regle *ajouterprop(Regle *regle, Proposition prop);
 bool appartient(ListeProp *premisse, Proposition prop);
 Regle *suppprop(Regle *regle);
