@@ -26,7 +26,8 @@ Regle *ajouterprop(Regle *regle, Proposition prop);
 bool appartient(ListeProp *premisse, Proposition prop);
 Regle *suppprop(Regle *regle);
 bool estVidePremisse(Regle *regle);
-
+Proposition teteregle (Regle *regle);
+Proposition *conclusion(Regle *regle);
 
 
 

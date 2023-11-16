@@ -76,3 +76,22 @@ bool estVidePremisse(Regle *regle)
     else
         return false;
 }
+Proposition teteregle(Regle *regle) {
+    if (regle->premisse == NULL) {
+        Proposition Vide;
+        Vide.phrase[0] = '\0'; //Vide
+        return Vide;
+    } else {
+        return regle->premisse->proposition; // phrase
+    }
+}
+
+Proposition *conclusion(Regle *regle) {
+    if (regle == NULL) {
+        Proposition Vide;
+        Vide.phrase[0] = '\0'; //Vide
+    }
+    else {
+        return regle->conclusion;
+    }
+}
