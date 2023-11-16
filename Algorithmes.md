@@ -85,3 +85,42 @@ Fonction pDansRegle(tete:premElement,prop:proposition):booleen
       fin si
   fin
   ```
+
+   -Algo du sous programme du sous programme qui supprime une proposition de la prémisse d'une règle.
+   ```Entête```: Fonction supprop(regle:Regle):Regle
+Algorithme Resultat: Regle
+           Données: regle
+```
+Fonction supprop(regle:Regle):Regle
+Début
+           Si premisse(regle) = INDEFINI alors
+                      supprop(regle)<-regle
+           Sinon
+                      Si next(premisse(regle)) = INDEFINI alors
+                                 supprop(regle)<-INDEFINI
+                      
+                      Sinon
+                                 tmp:Regle<-regle
+                                 Tant que next(premisse(tmp)) != INDEFINI faire 
+                                            tmp<-next(premisse(tmp))
+                                 Fait
+                                 next(before(premisse(tmp))) <- INDENINI
+                                 liberer(premisse(tmp))
+                      Finsi
+           Finsi
+Fin
+```
+Algo du sous programme du sous programme qui teste si la premisse d'une regle est vide.
+   ```Entête```: Fonction estvideProp(Regle:Regle):boolen
+Algorithme Resultat: Boolen
+           Données: regle
+```
+Fonction estvideProp(regle:Regle):boolen
+Début
+           Si premisse(regle) = INDEFINI alors
+                      estvideProp(regle)<-Vrai
+           Sinon
+                      estvideProp(regle)<-Faux
+           Finsi
+Fin
+```
