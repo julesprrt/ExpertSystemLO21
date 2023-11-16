@@ -1,31 +1,29 @@
 #include "RPremisse.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include "stdbool.h"
+#include "stdio.h"
+#include "stdlib.h"
 #include "string.h"
-
 
 Regle *creerRegle() {
     Regle *regle = (Regle *)malloc(sizeof(Regle));
-    regle->premisse = NULL;
+    regle->prem = NULL;
     regle->conclusion = NULL;
     return regle;
 }
 
-void ajouterqP(ListeProp **premisse, Proposition prop)
+void ajouterqP(premElement *premisse, Proposition prop)
 {
-    ListeProp *nvprop = (ListeProp *)malloc(sizeof(ListeProp));
+    premElement *nvprop = (premElement *)malloc(sizeof(premElement));
     if (nvprop == NULL) {
         exit(EXIT_FAILURE);
     }
     nvprop->proposition = prop;
     nvprop->next = NULL;
 
-    if (*premisse == NULL) {
-        *premisse = nvprop;
+    if (premisse == NULL) {
+        premisse = nvprop;
     } else {
         // parcours de la premisse
-        ListeProp *tmp = *premisse;
+        premElement *tmp = premisse;
         while (tmp->next != NULL) {
             tmp = tmp->next;
         }
@@ -35,11 +33,11 @@ void ajouterqP(ListeProp **premisse, Proposition prop)
 }
 
 Regle *ajouterprop(Regle *regle, Proposition prop) {
-    ajouterqP(&(regle->premisse), prop);
+    ajouterqP(&(regle->prem), prop);
     return regle;
 }
 
-bool appartient(ListeProp *premisse, Proposition prop) {
+bool appartient(premElement *premisse, Proposition prop){
     if (premisse == NULL) {
         return false;
     }
@@ -49,40 +47,45 @@ bool appartient(ListeProp *premisse, Proposition prop) {
         return appartient(premisse->next, prop);
     }
 }
+
 // SUPPRIME QUE EN QUEUE PR INSTANT
+
+
 Regle *suppprop(Regle *regle) {
-    if (regle->premisse == NULL) {
+    if (regle->prem == NULL) {
         return regle;
     }
-    else if (regle->premisse->next == NULL) {
+    else if (regle->prem->next == NULL) {
+        free(regle->prem);
         return NULL;
     }
     else {
         Regle *tmp = regle;
-        while (tmp->premisse->next != NULL) {
-            tmp = tmp->premisse->next;
+        while (tmp->prem->next != NULL) {
+            tmp = tmp->prem->next;
         }
-        tmp->premisse->before->next = NULL; // fais pointer avant dernier sur null
-        free(tmp->premisse); // supp dernier
+        tmp->prem->before->next = NULL; // fais pointer avant dernier sur null
+        free(tmp->prem); // supp dernier
 
     }
 }
 
 bool estVidePremisse(Regle *regle)
 {
-    if (regle->premisse == NULL) {
+    if (regle->prem == NULL) {
         return true;
     }
     else
         return false;
 }
+
 Proposition teteregle(Regle *regle) {
-    if (regle->premisse == NULL) {
+    if (regle->prem== NULL) {
         Proposition Vide;
         Vide.phrase[0] = '\0'; //Vide
         return Vide;
     } else {
-        return regle->premisse->proposition; // phrase
+        return regle->prem->proposition; // phrase
     }
 }
 

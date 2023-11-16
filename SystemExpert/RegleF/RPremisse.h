@@ -22,9 +22,9 @@ typedef struct {
 }Regle;
 
 Regle *creerRegle();
-void ajouterqP(preElement *premisse, Proposition prop);
+void ajouterqP(premElement *premisse, Proposition prop);
 Regle *ajouterprop(Regle *regle, Proposition prop);
-bool appartient(preElement *premisse, Proposition prop);
+bool appartient(premElement *premisse, Proposition prop);
 Regle *suppprop(Regle *regle);
 bool estVidePremisse(Regle *regle);
 Proposition teteregle (Regle *regle);
