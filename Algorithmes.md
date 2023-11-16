@@ -86,7 +86,7 @@ Fonction pDansRegle(tete:premElement,prop:proposition):booleen
   fin
   ```
 
-   -Algo du sous programme du sous programme qui supprime une proposition de la prémisse d'une règle.
+   -Algo du sous programme du sous programme qui supprime une proposition de la prémisse d'une règle. <br>
    ```Entête```: Fonction supprop(regle:Regle):Regle
 Algorithme Resultat: Regle
            Données: regle
@@ -110,7 +110,7 @@ Début
            Finsi
 Fin
 ```
-Algo du sous programme du sous programme qui teste si la premisse d'une regle est vide.
+Algo du sous programme du sous programme qui teste si la premisse d'une regle est vide. <br>
    ```Entête```: Fonction estvideProp(Regle:Regle):boolen
 Algorithme Resultat: Boolen
            Données: regle
