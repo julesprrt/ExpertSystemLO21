@@ -156,3 +156,47 @@ Début
            FinSi
 Fin
 ```
+## Structure de données BASE DE CONNAISSANCE:
+
+````
+````
+## Opérations type abstrait 
+Algo du sous programme qui creer une base de connaissance. <br>
+   ```Entête```: Fonction creerbase(): BaseCO 
+Algorithme Resultat: BaseCO
+           Données: Aucune    
+```
+Fonction creerBase(): BaseCO
+Début
+           tetebc:BaseCO <- allocation dynamique
+           next(tetebc) <- INDEFINI
+           before(tetebc) <- INDEFINI
+           creerBase()<-tetebc
+Fin
+```
+Algo du sous programme qui ajoute une regle a une base de connaissance. <br>
+   ```Entête```: Fonction ajoutregle(base: BaseCO, regle: Regle): BaseCO 
+Algorithme Resultat: BaseCO
+           Données: base, regle    
+```
+Fonction ajoutregle(base:BaseCO,regle:Regle): BaseCO
+Début
+           Si base = INDEFINI alors
+                      regle(base) <- regle
+                      next(regle) <- INDEFINI
+                      before(regle) <- INDEFINI
+           Sinon
+                      tmp : BaseCO <- allocation dynamique
+                      tmp<-regle
+                      Tant que next(tmp) != INDEFINI faire
+                                 tmp<-next(tmp)
+                      fait
+                      regle(next(tmp))<- regle
+                      next(next(tmp))<- INDEFINI
+                      before(next(tmp))<-tmp
+
+           FinSi                     
+Fin
+```
+
+
