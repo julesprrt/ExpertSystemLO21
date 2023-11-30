@@ -3,23 +3,14 @@
 #include "../RegleF/RPremisse.h"
 
 typedef struct BF {
-    premElement prop;
+    Proposition prop;
     struct BF *next;
 }BaseF;
 typedef BaseF *teteBF;
 
 BaseF creerBaseF();
-BaseF ajoutprop(BaseF *tetebf, premElement prop);
+BaseF ajoutprop(BaseF *tetebf, Proposition prop);
 void afficheBF(BaseF *tetebf);
-
-
-
-
-
-
-
-
-
 
 #define PROJETLO21_BASEFAIT_H
 

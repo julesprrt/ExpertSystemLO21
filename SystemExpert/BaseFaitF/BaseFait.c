@@ -8,7 +8,7 @@ BaseF creerBaseF() {
     return *tete;
 }
 
-BaseF ajoutprop(BaseF *tetebf, premElement prop) {
+BaseF ajoutprop(BaseF *tetebf, Proposition prop) {
     if (tetebf == NULL) {
         tetebf->prop = prop;
         tetebf->next = NULL;
@@ -34,7 +34,7 @@ void afficheBF(BaseF *tetebf) {
     else {
         printf("La base de faits est :\n");
         while (tetebf != NULL) {
-            printf("%s\n", tetebf->prop.proposition.phrase);
+            printf("%s\n", tetebf->prop.phrase);
             tetebf = tetebf->next;
         }
     }

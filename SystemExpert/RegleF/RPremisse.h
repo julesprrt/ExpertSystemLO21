@@ -25,7 +25,7 @@ Regle *creerRegle();
 void ajouterqP(premElement *premisse, Proposition prop);
 Regle *ajouterprop(Regle *regle, Proposition prop);
 bool appartient(premElement *premisse, Proposition prop);
-Regle *suppprop(Regle *regle);
+Regle *suppprop(Regle *regle,Proposition asuppProp);
 bool estVidePremisse(Regle *regle);
 Proposition tetepremisse (Regle *regle);
 Proposition conclusion(Regle *regle);

@@ -33,7 +33,7 @@ void ajouterqP(premElement *premisse, Proposition prop)
 }
 
 Regle *ajouterprop(Regle *regle, Proposition prop) {
-    ajouterqP(&(regle->prem), prop);
+    ajouterqP((regle->prem), prop);
     return regle;
 }
 
@@ -48,28 +48,19 @@ bool appartient(premElement *premisse, Proposition prop){
     }
 }
 
-// SUPPRIME QUE EN QUEUE PR INSTANT
-
-
-Regle *suppprop(Regle *regle) {
+Regle *suppprop(Regle *regle,Proposition asuppProp){
     if (regle->prem == NULL) {
         return regle;
     }
-    else if (regle->prem->next == NULL) {
-        free(regle->prem);
-        return NULL;
-    }
-    else {
-        Regle *tmp = regle;
-        while (tmp->prem->next != NULL) {
-            tmp = tmp->prem->next;
-        }
-        tmp->prem->before->next = NULL; // fais pointer avant dernier sur null
-        free(tmp->prem); // supp dernier
-
+    else if (strcmp(regle->prem->proposition.phrase, asuppProp.phrase) == 0) {
+        premElement *tmp = regle->prem;
+        regle->prem = regle->prem->next;
+        free(tmp);
+        return regle;
+    } else {
+        return suppprop(regle->prem->next, asuppProp);
     }
 }
-
 bool estVidePremisse(Regle *regle)
 {
     if (regle->prem == NULL) {

@@ -5,7 +5,7 @@
 #define PROJETLO21_BCF_H
 
 typedef struct BC {
-    Regle regle;
+    Regle *regle;
     struct BC *next;
     struct BC *before;
 }BaseCO;
