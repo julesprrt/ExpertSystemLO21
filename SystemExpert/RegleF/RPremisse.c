@@ -79,7 +79,7 @@ bool estVidePremisse(Regle *regle)
         return false;
 }
 
-Proposition teteregle(Regle *regle) {
+Proposition tetepremisse(Regle *regle) {
     if (regle->prem== NULL) {
         Proposition Vide;
         Vide.phrase[0] = '\0'; //Vide
@@ -89,12 +89,13 @@ Proposition teteregle(Regle *regle) {
     }
 }
 
-Proposition *conclusion(Regle *regle) {
-    if (regle == NULL) {
+Proposition conclusion(Regle *regle) {
+    if (regle->prem == NULL) {
         Proposition Vide;
         Vide.phrase[0] = '\0'; //Vide
+        return Vide;
     }
     else {
-        return regle->conclusion;
+        return *regle->conclusion;
     }
 }

@@ -12,8 +12,6 @@ typedef struct BC {
 
 typedef BaseCO *teteBC;
 
-
-
 BaseCO creerBase();
 BaseCO ajoutregle(BaseCO *tetebc, Regle regle);
 
