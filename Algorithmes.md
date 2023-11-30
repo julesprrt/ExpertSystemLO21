@@ -86,7 +86,7 @@ Fonction pDansRegle(tete:premElement,prop:proposition):booleen
   fin
   ```
 
-   -Algo du sous programme du sous programme qui supprime une proposition de la prémisse d'une règle. <br>
+   -Algo du sous programme qui supprime une proposition de la prémisse d'une règle. <br>
    ```Entête```: Fonction supprop(regle:Regle):Regle
 Algorithme Resultat: Regle
            Données: regle
@@ -110,8 +110,8 @@ Début
            Finsi
 Fin
 ```
-Algo du sous programme du sous programme qui teste si la premisse d'une regle est vide. <br>
-   ```Entête```: Fonction estvideProp(Regle:Regle):boolen
+Algo du sous programme qui teste si la premisse d'une regle est vide. <br>
+   ```Entête```: Fonction estvideProp(regle:Regle):boolen
 Algorithme Resultat: Boolen
            Données: regle
 ```
@@ -124,3 +124,79 @@ Début
            Finsi
 Fin
 ```
+Algo du sous programme qui accede a la proposition en tete d'une prémisse. <br>
+   ```Entête```: Fonction tetepremisse (regle:Regle):Proposition 
+Algorithme Resultat: Proposition
+           Données: regle
+```
+Fonction tetepremisse(regle:Regle):Proposition
+Début
+           Si prem(regle) = INDEFINI alors
+                      vide:Proposition
+                      phrase(vide) = INDEFINI
+                      tetepremisse(regle) <- phrase(vide) 
+           Sinon
+                      tetepremisse(regle) <- proposition(prem(regle))
+           FinSi
+Fin
+```
+Algo du sous programme qui accede a la conclusion d'une regle. <br>
+   ```Entête```: Fonction conclusion (regle:Regle):Proposition 
+Algorithme Resultat: Proposition
+           Données: regle    
+```
+Fonction conclusion(regle:Regle): Proposition
+Début
+           Si prem(regle) = INDEFINI alors
+                      vide:Proposition
+                      phrase(vide) = INDEFINI
+                      conclusion(regle) <- phrase(vide) 
+           Sinon
+                      conclusion(regle) <- conlusion(regle)
+           FinSi
+Fin
+```
+## Structure de données BASE DE CONNAISSANCE:
+
+````
+````
+## Opérations type abstrait 
+Algo du sous programme qui creer une base de connaissance. <br>
+   ```Entête```: Fonction creerbase(): BaseCO 
+Algorithme Resultat: BaseCO
+           Données: Aucune    
+```
+Fonction creerBase(): BaseCO
+Début
+           tetebc:BaseCO <- allocation dynamique
+           next(tetebc) <- INDEFINI
+           before(tetebc) <- INDEFINI
+           creerBase()<-tetebc
+Fin
+```
+Algo du sous programme qui ajoute une regle a une base de connaissance. <br>
+   ```Entête```: Fonction ajoutregle(base: BaseCO, regle: Regle): BaseCO 
+Algorithme Resultat: BaseCO
+           Données: base, regle    
+```
+Fonction ajoutregle(base:BaseCO,regle:Regle): BaseCO
+Début
+           Si base = INDEFINI alors
+                      regle(base) <- regle
+                      next(regle) <- INDEFINI
+                      before(regle) <- INDEFINI
+           Sinon
+                      tmp : BaseCO <- allocation dynamique
+                      tmp<-regle
+                      Tant que next(tmp) != INDEFINI faire
+                                 tmp<-next(tmp)
+                      fait
+                      regle(next(tmp))<- regle
+                      next(next(tmp))<- INDEFINI
+                      before(next(tmp))<-tmp
+
+           FinSi                     
+Fin
+```
+
+
