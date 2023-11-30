@@ -22,7 +22,7 @@ typedef struct {
 }Regle;
 
 Regle *creerRegle();
-void ajouterqP(premElement *premisse, Proposition prop);
+Proposition creerProposition(); // Pour creer prop ET conclusion
 Regle *ajouterprop(Regle *regle, Proposition prop);
 bool appartient(premElement *premisse, Proposition prop);
 Regle *suppprop(Regle *regle,Proposition asuppProp);

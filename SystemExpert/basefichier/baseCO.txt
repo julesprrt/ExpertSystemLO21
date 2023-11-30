@@ -1,0 +1,7 @@
+A+B=C
+A+C=D
+B+C=E
+B+D=F
+C+D=A
+C+E=B
+D+E=F

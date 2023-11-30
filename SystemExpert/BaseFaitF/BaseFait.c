@@ -1,13 +1,16 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "BaseFait.h"
-
+/*!
+ * \file BaseFait.c
+ * \brief creer une base de Fait
+ * @return
+ */
 BaseF creerBaseF() {
     BaseF *tete = (BaseF *)malloc(sizeof (BaseF));
     tete->next = NULL;
     return *tete;
 }
-
 BaseF ajoutprop(BaseF *tetebf, Proposition prop) {
     if (tetebf == NULL) {
         tetebf->prop = prop;

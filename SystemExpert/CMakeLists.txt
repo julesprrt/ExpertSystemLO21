@@ -8,8 +8,8 @@ add_executable(ProjetLO21 main.c
         RegleF/RPremisse.c
         BaseConnaissanceF/BCF.h
         BaseConnaissanceF/BCF.c
-        InferenceF.h
-        InferenceF.c
+        Inference/InferenceF.h
+        Inference/InferenceF.c
         BaseFaitF/BaseFait.h
         BaseFaitF/BaseFait.c
         BaseFaitF/BaseFait.c
