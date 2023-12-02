@@ -36,6 +36,12 @@ Regle *ajouterprop(Regle *regle, Proposition prop) {
     ajouterqP((regle->prem), prop);
     return regle;
 }
+Proposition creerProposition() {
+    Proposition prop;
+    prop.phrase = (char *)malloc(sizeof(char) * 100);
+    return prop;
+}
+
 
 bool appartient(premElement *premisse, Proposition prop){
     if (premisse == NULL) {

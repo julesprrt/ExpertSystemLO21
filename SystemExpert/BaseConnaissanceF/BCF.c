@@ -8,20 +8,37 @@ BaseCO creerBase() {
     tetebc->before = NULL;
     return *tetebc;
 }
-Proposition creerProposition() {
-    Proposition prop;
-    prop.phrase = (char *)malloc(sizeof(char) * 100);
-    return prop;
+
+void ecrirebaseCO() {
+    printf("Veuillez ecrire 5 regles.\n");
+    printf("Voici le format a respecter :\n");
+    printf("Exemple dune regle : {A+B=C}.\n");
+    FILE *fichier = NULL;
+    fichier = fopen("basefichier/baseCO.txt", "w");
+    if (fichier != NULL)
+    {
+        for (int i = 0; i < 6 ; i++) {
+            char ligne[100];
+            printf("Veuillez saisir la %deme regle :\n");
+            scanf("%s",ligne);
+            if (strlen(ligne) > 5) {
+                printf("Erreur, la regle est trop longue.\n");
+                exit(EXIT_FAILURE);
+            }
+            fputs(ligne,fichier);
+            printf("Merci. %deme bien saisie.");
+
+        }
+    }
+    fclose(fichier);
+
+
 }
-/*!
- * \fn BaseCO ReadBaseCOFile()
- * \brief lire le fichier BaseConnaissance.txt et creer une base de connaissance. Dans le fichier les premisses sont separees par des + et les propositions par des =.
- * @return
- */
+
 BaseCO ReadBaseCOFile() {
     BaseCO baseCO = creerBase();
     FILE *fichier = NULL;
-    fichier = fopen("BaseConnaissance.txt", "r");
+    fichier = fopen("basefichier/baseCO.txt", "r");
     if (fichier != NULL) {
         char ligne[100];
         while (fgets(ligne, 100, fichier) != NULL) {
@@ -37,6 +54,7 @@ BaseCO ReadBaseCOFile() {
             else {
                 perror("Fichier BaseCO.txt mal formé.");
             }
+            ajoutregle(&baseCO,regle); // TO DO : a fixer
 
         }
         fclose(fichier);
@@ -44,23 +62,23 @@ BaseCO ReadBaseCOFile() {
     return baseCO;
 }
 
-BaseCO ajoutregle(BaseCO *base, Regle *regle) {
-    if (base == NULL) {
-        base->regle = regle ;
-        base->next = NULL;
-        base->before = NULL;
+BaseCO ajoutregle(BaseCO *tetebc, Regle *regle) {
+    if (tetebc == NULL) {
+        tetebc->regle = regle ;
+        tetebc->next = NULL;
+        tetebc->before = NULL;
     }
     else {
         BaseCO *tmp = (BaseCO *)malloc(sizeof(BaseCO));
         if (tmp != NULL) {
             tmp->regle = regle;
             tmp->next = NULL;
-            tmp->before = base;
+            tmp->before = tetebc;
 
-            while (base->next != NULL) {
-                base = base->next;
+            while (tetebc->next != NULL) {
+                tetebc = tetebc->next;
             }
-            base->next = tmp;
+            tetebc->next = tmp;
         }
     }
 }
