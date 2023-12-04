@@ -1,6 +1,7 @@
 #include "../RegleF/RPremisse.h"
 
 
+
 #ifndef PROJETLO21_BCF_H
 #define PROJETLO21_BCF_H
 
@@ -11,9 +12,10 @@ typedef struct BC {
 }BaseCO;
 
 typedef BaseCO *teteBC;
-BaseCO creerBase();
+BaseCO *creerBase();
 BaseCO ajoutregle(BaseCO *tetebc, Regle *regle);
-BaseCO ReadBaseCOFile();
+BaseCO *ReadBaseCOFile();
+void afficherBC(BaseCO *tetebc);
 void ecrirebaseCO();
 
 

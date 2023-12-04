@@ -9,6 +9,9 @@
 
 
 int main() {
-    ecrirebaseCO();
+    BaseCO *baseCo = creerBase();
+
+    baseCo = ReadBaseCOFile();
+    //afficherBC(baseCo);
     return 0;
 }

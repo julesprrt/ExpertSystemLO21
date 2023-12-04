@@ -3,7 +3,7 @@ project(ProjetLO21 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(ProjetLO21 main.c
+add_executable(ProjetLO21
         RegleF/RPremisse.h
         RegleF/RPremisse.c
         BaseConnaissanceF/BCF.h
@@ -13,4 +13,5 @@ add_executable(ProjetLO21 main.c
         BaseFaitF/BaseFait.h
         BaseFaitF/BaseFait.c
         BaseFaitF/BaseFait.c
+        main.c
 )

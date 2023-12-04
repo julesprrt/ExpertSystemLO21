@@ -49,12 +49,6 @@ cmake_ninja_workdir = C$:/Users/Utilisateur/OneDrive/Bureau/ProjetLO21/SystemExp
 
 build cmake_object_order_depends_target_ProjetLO21: phony || CMakeFiles/ProjetLO21.dir
 
-build CMakeFiles/ProjetLO21.dir/main.c.obj: C_COMPILER__ProjetLO21_unscanned_Debug C$:/Users/Utilisateur/OneDrive/Bureau/ProjetLO21/SystemExpert/main.c || cmake_object_order_depends_target_ProjetLO21
-  DEP_FILE = CMakeFiles\ProjetLO21.dir\main.c.obj.d
-  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\ProjetLO21.dir
-  OBJECT_FILE_DIR = CMakeFiles\ProjetLO21.dir
-
 build CMakeFiles/ProjetLO21.dir/RegleF/RPremisse.c.obj: C_COMPILER__ProjetLO21_unscanned_Debug C$:/Users/Utilisateur/OneDrive/Bureau/ProjetLO21/SystemExpert/RegleF/RPremisse.c || cmake_object_order_depends_target_ProjetLO21
   DEP_FILE = CMakeFiles\ProjetLO21.dir\RegleF\RPremisse.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
@@ -79,6 +73,12 @@ build CMakeFiles/ProjetLO21.dir/BaseFaitF/BaseFait.c.obj: C_COMPILER__ProjetLO21
   OBJECT_DIR = CMakeFiles\ProjetLO21.dir
   OBJECT_FILE_DIR = CMakeFiles\ProjetLO21.dir\BaseFaitF
 
+build CMakeFiles/ProjetLO21.dir/main.c.obj: C_COMPILER__ProjetLO21_unscanned_Debug C$:/Users/Utilisateur/OneDrive/Bureau/ProjetLO21/SystemExpert/main.c || cmake_object_order_depends_target_ProjetLO21
+  DEP_FILE = CMakeFiles\ProjetLO21.dir\main.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProjetLO21.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProjetLO21.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ProjetLO21
@@ -87,7 +87,7 @@ build CMakeFiles/ProjetLO21.dir/BaseFaitF/BaseFait.c.obj: C_COMPILER__ProjetLO21
 #############################################
 # Link the executable ProjetLO21.exe
 
-build ProjetLO21.exe: C_EXECUTABLE_LINKER__ProjetLO21_Debug CMakeFiles/ProjetLO21.dir/main.c.obj CMakeFiles/ProjetLO21.dir/RegleF/RPremisse.c.obj CMakeFiles/ProjetLO21.dir/BaseConnaissanceF/BCF.c.obj CMakeFiles/ProjetLO21.dir/Inference/InferenceF.c.obj CMakeFiles/ProjetLO21.dir/BaseFaitF/BaseFait.c.obj
+build ProjetLO21.exe: C_EXECUTABLE_LINKER__ProjetLO21_Debug CMakeFiles/ProjetLO21.dir/RegleF/RPremisse.c.obj CMakeFiles/ProjetLO21.dir/BaseConnaissanceF/BCF.c.obj CMakeFiles/ProjetLO21.dir/Inference/InferenceF.c.obj CMakeFiles/ProjetLO21.dir/BaseFaitF/BaseFait.c.obj CMakeFiles/ProjetLO21.dir/main.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ProjetLO21.dir
