@@ -1,4 +1,7 @@
-A+B=C
-A+C=D
-B+C=E
-A+E=F
+oeil+rougeur=conjonctivite
+nezbouche+rougeur=angine
+maldetete+rougeur=otite
+maldetete+nezbouche=angine
+maldetete+oeil=conjonctivite
+toux+rougeur=angine
+toux+nezbouche=angine

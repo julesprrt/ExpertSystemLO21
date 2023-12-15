@@ -10,8 +10,12 @@
 
 int main() {
     BaseCO *baseCo = creerBase();
-
+    //BaseF baseF = creerBaseF();
+    //lireFait(&baseF);
+    //afficheBF(&baseF);
     baseCo = ReadBaseCOFile();
-    //afficherBC(baseCo);
+    afficherBC(baseCo);
+    //baseF = inference(baseCo, &baseF);
+    //afficheBF(&baseF);
     return 0;
 }

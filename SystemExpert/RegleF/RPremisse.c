@@ -9,32 +9,22 @@ Regle *creerRegle() {
     regle->conclusion = NULL;
     return regle;
 }
+void ajouterproparegle(premElement **prem, Proposition prop) {
+    premElement *newElem = (premElement *)malloc(sizeof(premElement));
+    newElem->proposition = prop;
+    newElem->next = NULL;
+    newElem->before = NULL;
 
-void ajouterqP(premElement *premisse, Proposition prop)
-{
-    premElement *nvprop = (premElement *)malloc(sizeof(premElement));
-    if (nvprop == NULL) {
-        exit(EXIT_FAILURE);
-    }
-    nvprop->proposition = prop;
-    nvprop->next = NULL;
-
-    if (premisse == NULL) {
-        premisse = nvprop;
+    if (*prem == NULL) {
+        *prem = newElem;
     } else {
-        // parcours de la premisse
-        premElement *tmp = premisse;
+        premElement *tmp = *prem;
         while (tmp->next != NULL) {
             tmp = tmp->next;
         }
-        tmp->next = nvprop;
-        nvprop->before = tmp;
+        tmp->next = newElem;
+        newElem->before = tmp;
     }
-}
-
-Regle *ajouterprop(Regle *regle, Proposition prop) {
-    ajouterqP((regle->prem), prop);
-    return regle;
 }
 Proposition creerProposition() {
     Proposition prop;
@@ -47,11 +37,15 @@ bool appartient(premElement *premisse, Proposition prop){
     if (premisse == NULL) {
         return false;
     }
-    else if (strcmp(premisse->proposition.phrase, prop.phrase) == 0) {
-        return true;
-    } else {
-        return appartient(premisse->next, prop);
+    else {
+        while (premisse->next != NULL) {
+            if (strcmp(premisse->proposition.phrase, prop.phrase) == 0) {
+                return true;
+            }
+            premisse = premisse->next;
+        }
     }
+    return false;
 }
 
 Regle *suppprop(Regle *regle,Proposition asuppProp){

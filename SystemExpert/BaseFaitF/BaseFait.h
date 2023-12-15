@@ -9,8 +9,9 @@ typedef struct BF {
 typedef BaseF *teteBF;
 
 BaseF creerBaseF();
-BaseF ajoutprop(BaseF *tetebf, Proposition prop);
+void ajoutprop(BaseF *tetebf, Proposition prop);
 void afficheBF(BaseF *tetebf);
+void lireFait(BaseF *tetebf);
 
 #define PROJETLO21_BASEFAIT_H
 

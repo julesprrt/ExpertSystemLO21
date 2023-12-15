@@ -1,112 +1,106 @@
 #include "BCF.h"
 #include "../RegleF/RPremisse.h"
-#include "stdlib.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 BaseCO *creerBase() {
-    BaseCO *tetebc = (BaseCO *)malloc(sizeof (BaseCO));
+    BaseCO *tetebc = (BaseCO *)malloc(sizeof(BaseCO));
+    if (tetebc == NULL) {
+        perror("Erreur lors de l'allocation mémoire");
+        exit(EXIT_FAILURE);
+    }
     tetebc->next = NULL;
     tetebc->before = NULL;
     return tetebc;
 }
-Proposition *ajouterPhrase(Proposition *prop, char *phrase) {
-    prop->phrase = phrase;
-    return prop;
-};
-/*void ecrirebaseCO() {
-    printf("Veuillez ecrire 5 regles.\n");
-    printf("Voici le format a respecter :\n");
-    printf("Exemple dune regle : {A+B=C}.\n");
-    FILE *fichier = NULL;
-    fichier = fopen("basefichier/baseCO.txt", "w");
-    if (fichier != NULL)
-    {
-        for (int i = 0; i < 5 ; i++) {
-            char ligne[100];
-            printf("Veuillez saisir la %deme regle :\n",i+1);
-            scanf("%s",ligne);
-            if (strlen(ligne) > 5) {
-                printf("Erreur, la regle est trop longue.\n");
-                exit(EXIT_FAILURE);
-            }
-            fprintf(fichier,ligne);
-            fprintf(fichier,"\n");
-            printf("Merci. %deme bien saisie.",i+1);
 
-        }
+Proposition *ajouterPhrase(Proposition *prop, const char *phrase) {
+    prop->phrase = strdup(phrase);
+    if (prop->phrase == NULL) {
+        perror("Erreur");
+        exit(EXIT_FAILURE);
     }
-    fclose(fichier);
+    return prop;
+}
 
-
-}*/
 BaseCO *ReadBaseCOFile() {
     BaseCO *baseCO = creerBase();
-    FILE *fichier = NULL;
-    fichier = fopen("../basefichier/baseCO.txt", "r");
-    printf("Ouverture du fichier baseCO.txt...\n");
+    FILE *fichier = fopen("../basefichier/baseCO.txt", "r");
+
     if (fichier != NULL) {
         char ligne[100];
-        printf("Lecture du fichier baseCO.txt...\n");
-        while (fgets(ligne, 100, fichier) != NULL) {
+        printf("Ouverture du fichier baseCO.txt...\n");
+
+        while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+            printf("\nRaw input line: %s\n", ligne); // Debug print
 
             Regle *regle = creerRegle();
-            Proposition prop1 = creerProposition();
-            Proposition prop2 = creerProposition();
-            Proposition conclusion = creerProposition();
+            Proposition *prop1 = (Proposition *)malloc(sizeof(Proposition));
+            Proposition *prop2 = (Proposition *)malloc(sizeof(Proposition));
+            Proposition *conclusion = (Proposition *)malloc(sizeof(Proposition));
 
-            if (ligne[1] == '+' && ligne[3] == '=') {
-                prop1.phrase = strtok(ligne, "+");
-                prop2.phrase = strtok(NULL, "=");
-                conclusion.phrase = strtok(NULL, "\n");
-                regle = ajouterprop(regle, prop1);
-                regle = ajouterprop(regle, prop2);
-                regle->conclusion = &conclusion;
-                printf("Nouvelle regle enregistrée : \n");
-                printf("Premisse : %s + %s\n", prop1.phrase, prop2.phrase);
+            if (regle != NULL && prop1 != NULL && prop2 != NULL && conclusion != NULL) {
+                char *token = strtok(ligne, "+");
+                ajouterPhrase(prop1, token);
 
-                }
-            else {
-                perror("Fichier BaseCO.txt mal formé.");
+                token = strtok(NULL, "=");
+                ajouterPhrase(prop2, token);
+
+                token = strtok(NULL, "\n");
+                ajouterPhrase(conclusion, token);
+
+                regle->conclusion = conclusion;
+                ajouterproparegle(&regle->prem, *prop1);
+                ajouterproparegle(&regle->prem, *prop2);
+
+                printf("Nouvelle regle enregistre:\n");
+                printf("Premisse: %s + %s\n", prop1->phrase, prop2->phrase);
+                printf("Conclusion: %s\n", conclusion->phrase);
+            } else {
+                printf("Fichier BaseCO.txt mal forme.\n");
             }
-            ajoutregle(baseCO,regle);
+
+            baseCO = ajoutregle(baseCO, regle);
         }
+
         fclose(fichier);
+    } else {
+        perror("Erreur lors de l'ouverture du fichier baseCO.txt");
     }
+
     return baseCO;
 }
 
-BaseCO ajoutregle(BaseCO *tetebc, Regle *regle) {
-    if (tetebc == NULL) {
-        tetebc->regle = regle ;
-        tetebc->next = NULL;
-        tetebc->before = NULL;
+BaseCO *ajoutregle(BaseCO *tetebc, Regle *regle) {
+    BaseCO *newElem = (BaseCO *)malloc(sizeof(BaseCO));
+    if (newElem == NULL) {
+        perror("Erreur lors de l'allocation mémoire pour une nouvelle règle");
+        exit(EXIT_FAILURE);
     }
-    else {
-        BaseCO *tmp = (BaseCO *)malloc(sizeof(BaseCO));
-        if (tmp != NULL) {
-            tmp->regle = regle;
-            tmp->next = NULL;
-            tmp->before = tetebc;
+    newElem->regle = regle;
+    newElem->next = NULL;
+    newElem->before = NULL;
 
-            while (tetebc->next != NULL) {
-                tetebc = tetebc->next;
-            }
-            tetebc->next = tmp;
+    if (tetebc == NULL) {
+        tetebc = newElem;
+    } else {
+        BaseCO *tmp = tetebc;
+        while (tmp->next != NULL) {
+            tmp = tmp->next;
         }
+        tmp->next = newElem;
+        newElem->before = tmp;
     }
+    return tetebc;
 }
+
 void afficherBC(BaseCO *tetebc) {
     if (tetebc == NULL) {
         printf("Base de connaissance vide.\n");
-    }
-    else {
+    } else {
         while (tetebc != NULL) {
-            printf("Premisse : ");
-            premElement *tmp = tetebc->regle->prem;
-            while (tmp != NULL) {
-                printf("%s ", tmp->proposition.phrase);
-                tmp = tmp->next;
-            }
-            printf("\nConclusion : %s\n", tetebc->regle->conclusion->phrase);
+            printf("Regle : %s + %s = %s\n", tetebc->regle->prem->proposition.phrase,tetebc->regle->prem->next->proposition.phrase, tetebc->regle->conclusion->phrase);
             tetebc = tetebc->next;
         }
     }

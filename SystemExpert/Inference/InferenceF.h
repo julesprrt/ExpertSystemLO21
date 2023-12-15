@@ -4,7 +4,7 @@
 #include "../BaseConnaissanceF/BCF.h"
 #include "../RegleF/RPremisse.h"
 
-BaseF inference(BaseF *baseF, BaseCO *baseCo);
+BaseF inference(BaseCO *baseCo, BaseF *baseF);
 
 
 

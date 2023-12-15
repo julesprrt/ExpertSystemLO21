@@ -3,28 +3,34 @@
 #include "../BaseConnaissanceF/BCF.h"
 #include "../RegleF/RPremisse.h"
 
-/*!
- * \file InferenceF.c
- * \brief Module qui gère l'inférence des règles trouve dans le fichier baseCo.txt et ecris des conclusions dans le fichier baseF.txt
- * @param baseF
- * @param baseCo
- * @return
- */
-BaseF inference(BaseF *baseF, BaseCO *baseCo) {
-if (baseF != NULL && baseCo != NULL) {
-        BaseCO *tmp = baseCo;
-        while (tmp != NULL) {
-            if (appartient(tmp->regle->prem, baseF->prop) == true) {
-                suppprop(tmp->regle, baseF->prop);
-                if (estVidePremisse(tmp->regle->prem) == true) {
-                    ajoutprop(baseF, *tmp->regle->conclusion);
+BaseF inference(BaseCO *baseCo, BaseF *baseF) {
+    if (baseF != NULL) {
+        if (baseCo != NULL) {
+            BaseF *tmpFait = baseF;
+            BaseCO *tmpBc = NULL;
+
+            while (tmpFait != NULL) {
+                tmpBc = baseCo;
+                while (tmpBc != NULL) {
+                    if (!estVidePremisse(tmpBc->regle)) {
+                        if (appartient(tmpBc->regle->prem, tmpFait->prop)) {
+                            suppprop(tmpBc->regle, tmpFait->prop);
+                            if (estVidePremisse(tmpBc->regle)) {
+                                ajoutprop(baseF, *tmpBc->regle->conclusion);
+                            }
+                        }
+                    }
+                    tmpBc = tmpBc->next;
                 }
+                tmpFait = tmpFait->next;
             }
-            tmp = tmp->next;
+        }
+        else {
+            printf("La base de connaissance est vide. \n");
         }
     }
     else {
-        printf("Erreur, base de connaissance ou base de fait Vide \n");
+        printf("La base de fait est vide.\n");
     }
     return *baseF;
 }

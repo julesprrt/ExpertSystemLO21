@@ -23,20 +23,11 @@ typedef struct {
 
 Regle *creerRegle();
 Proposition creerProposition(); // Pour creer prop ET conclusion
-Regle *ajouterprop(Regle *regle, Proposition prop);
+void ajouterproparegle(premElement **prem, Proposition prop);
 bool appartient(premElement *premisse, Proposition prop);
 Regle *suppprop(Regle *regle,Proposition asuppProp);
 bool estVidePremisse(Regle *regle);
 Proposition tetepremisse (Regle *regle);
 Proposition conclusion(Regle *regle);
-
-
-
-
-
-
-
-
-
 
 #endif //PROJETLO21_RPRÉMISSE_H
