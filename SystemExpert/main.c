@@ -25,14 +25,14 @@ int main() {
     printf("Apres avoir choisi un theme, veuillez saisir un ou plusieurs propositions.\n");
     printf("Le systeme ferra ses propres deductions de vos propositions et vous les soumettras.\n");
     printf("Voici les themes disponibles:\n\n\n");
-    printf(("1. Les problemes de sante          2. Les couleurs               3. Les emotions\n"));
+    printf(("1. Les problemes de sante          2. Les couleurs               3. Les villes\n"));
     printf(("4. Les plats/ingredients           5. La meteo                   6. Les sports  \n"));
     printf("\n\n");
     printf("Veuillez choisir un theme en renseignant le numero associe: ");
     scanf("%d", &choixSujet);
     char* nomFichier = getNomFichier(choixSujet);
     baseCo = ReadBaseCOFile(nomFichier);
-    //afficherBC(baseCo);
+    afficherBC(baseCo);
     printf("Combien de faits voulez-vous entrer ?\n ");
     int nbFait;
     scanf("%d", &nbFait);

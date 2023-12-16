@@ -12,7 +12,7 @@ char* getNomFichier(int numeroSujet) {
             sprintf(nomFichier, "couleur.txt");
             break;
         case 3:
-            sprintf(nomFichier, "emotions.txt");
+            sprintf(nomFichier, "ville.txt");
             break;
         case 4:
             sprintf(nomFichier, "ingredientplat.txt");
