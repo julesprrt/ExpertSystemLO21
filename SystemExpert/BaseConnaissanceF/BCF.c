@@ -32,7 +32,6 @@ BaseCO *ReadBaseCOFile(const char *nomFichier) {
     FILE *fichier = fopen(cheminComplet, "r");
     if (fichier != NULL) {
         char ligne[100];
-        printf("Ouverture du fichier %s...\n", nomFichier);
 
         while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
 

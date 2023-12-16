@@ -1,0 +1,17 @@
+ail+huileolive=sauceail
+sauceail+poulet=ailepoulet
+ailepoulet+pates=pouletalailpates
+pouletalailpates+parmesan=platitalien
+platitalien+tomates=couleurstomates
+couleurstomates+mozzarella=saladecaprese
+saladecaprese+basilic=fraicheur
+fraicheur+pain=bruschetta
+bruschetta+jambon=antipasti
+antipasti+fromage=platteraclette
+platteraclette+pommesdeterre=fondue
+fondue+baguette=fetefromage
+fetefromage+fruits=plateaudelices
+plateaudelices+vinrouge=soireeconviviale
+soireeconviviale+dessertchocolat=finderepasgourmande
+finderepasgourmande+cafe=douceur
+douceur+digestif=soireeapaisante

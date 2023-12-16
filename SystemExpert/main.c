@@ -31,9 +31,8 @@ int main() {
     printf("Veuillez choisir un theme en renseignant le numero associe: ");
     scanf("%d", &choixSujet);
     char* nomFichier = getNomFichier(choixSujet);
-    printf("Nom du fichier choisi : %s\n", nomFichier);
     baseCo = ReadBaseCOFile(nomFichier);
-    afficherBC(baseCo);
+    //afficherBC(baseCo);
     printf("Combien de faits voulez-vous entrer ?\n ");
     int nbFait;
     scanf("%d", &nbFait);
