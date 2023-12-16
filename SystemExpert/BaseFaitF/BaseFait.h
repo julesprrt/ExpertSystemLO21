@@ -11,7 +11,7 @@ typedef BaseF *teteBF;
 BaseF creerBaseF();
 void ajoutprop(BaseF *tetebf, Proposition prop);
 void afficheBF(BaseF *tetebf);
-void lireFait(BaseF *tetebf);
+void lireFait(BaseF *tetebf, int nbFait);
 
 #define PROJETLO21_BASEFAIT_H
 

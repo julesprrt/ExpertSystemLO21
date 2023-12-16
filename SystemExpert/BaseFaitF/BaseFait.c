@@ -61,8 +61,8 @@ void afficheBF(BaseF *tetebf) {
  * \brief lire les faits
  * @param tetebf
  */
-void lireFait(BaseF *tetebf) {
-    for (int i = 0; i < 2; i++) {
+void lireFait(BaseF *tetebf, int nbFait) {
+    for (int i = 0; i < nbFait; i++) {
         printf("Veuillez entrer une proposition : \n");
         char *phrase = (char *) malloc(sizeof(char) * 100);
         scanf("%s", phrase);

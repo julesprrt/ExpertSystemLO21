@@ -12,7 +12,7 @@ typedef struct BC {
 typedef BaseCO *teteBC;
 BaseCO *creerBase();
 BaseCO *ajoutregle(BaseCO *tetebc, Regle *regle);
-BaseCO *ReadBaseCOFile();
+BaseCO *ReadBaseCOFile(const char *nomFichier);
 void afficherBC(BaseCO *tetebc);
 
 #endif //PROJETLO21_BCF_H

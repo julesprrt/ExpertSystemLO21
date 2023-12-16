@@ -14,4 +14,6 @@ add_executable(ProjetLO21
         BaseFaitF/BaseFait.c
         BaseFaitF/BaseFait.c
         main.c
+        JeuF/JeuFonction.c
+        JeuF/JeuFonction.h
 )
