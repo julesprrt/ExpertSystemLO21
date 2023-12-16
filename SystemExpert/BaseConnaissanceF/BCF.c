@@ -12,6 +12,7 @@ BaseCO *creerBase() {
     }
     tetebc->next = NULL;
     tetebc->before = NULL;
+    tetebc->regle = NULL;
     return tetebc;
 }
 
@@ -24,16 +25,16 @@ Proposition *ajouterPhrase(Proposition *prop, const char *phrase) {
     return prop;
 }
 
-BaseCO *ReadBaseCOFile() {
+BaseCO *ReadBaseCOFile(const char *nomFichier) {
     BaseCO *baseCO = creerBase();
-    FILE *fichier = fopen("../basefichier/baseCO.txt", "r");
-
+    char cheminComplet[256];
+    sprintf(cheminComplet, "../basefichier/%s", nomFichier);
+    FILE *fichier = fopen(cheminComplet, "r");
     if (fichier != NULL) {
         char ligne[100];
-        printf("Ouverture du fichier baseCO.txt...\n");
+        printf("Ouverture du fichier %s...\n", nomFichier);
 
         while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
-            printf("\nRaw input line: %s\n", ligne); // Debug print
 
             Regle *regle = creerRegle();
             Proposition *prop1 = (Proposition *)malloc(sizeof(Proposition));
@@ -53,12 +54,8 @@ BaseCO *ReadBaseCOFile() {
                 regle->conclusion = conclusion;
                 ajouterproparegle(&regle->prem, *prop1);
                 ajouterproparegle(&regle->prem, *prop2);
-
-                printf("Nouvelle regle enregistre:\n");
-                printf("Premisse: %s + %s\n", prop1->phrase, prop2->phrase);
-                printf("Conclusion: %s\n", conclusion->phrase);
             } else {
-                printf("Fichier BaseCO.txt mal forme.\n");
+                printf("Fichier %s mal forme.\n", nomFichier);
             }
 
             baseCO = ajoutregle(baseCO, regle);
@@ -66,7 +63,7 @@ BaseCO *ReadBaseCOFile() {
 
         fclose(fichier);
     } else {
-        perror("Erreur lors de l'ouverture du fichier baseCO.txt");
+        perror("Erreur lors de l'ouverture du fichier");
     }
 
     return baseCO;
@@ -82,7 +79,7 @@ BaseCO *ajoutregle(BaseCO *tetebc, Regle *regle) {
     newElem->next = NULL;
     newElem->before = NULL;
 
-    if (tetebc == NULL) {
+    if (tetebc->regle == NULL) {
         tetebc = newElem;
     } else {
         BaseCO *tmp = tetebc;

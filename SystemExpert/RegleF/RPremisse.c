@@ -38,27 +38,39 @@ bool appartient(premElement *premisse, Proposition prop){
         return false;
     }
     else {
-        while (premisse->next != NULL) {
-            if (strcmp(premisse->proposition.phrase, prop.phrase) == 0) {
-                return true;
-            }
-            premisse = premisse->next;
+        if (strcmp(premisse->proposition.phrase, prop.phrase) == 0) {
+            return true;
+        }
+        else {
+            return appartient(premisse->next, prop);
         }
     }
-    return false;
 }
+void suppprop(Regle *regle, Proposition asuppProp) {
+    if(regle) {
 
-Regle *suppprop(Regle *regle,Proposition asuppProp){
-    if (regle->prem == NULL) {
-        return regle;
-    }
-    else if (strcmp(regle->prem->proposition.phrase, asuppProp.phrase) == 0) {
-        premElement *tmp = regle->prem;
-        regle->prem = regle->prem->next;
-        free(tmp);
-        return regle;
+        if (!estVidePremisse(regle)) {
+            premElement *current = regle->prem;
+            premElement *previous = NULL;
+            while (current != NULL && strcmp(current->proposition.phrase, asuppProp.phrase) != 0) {
+                previous = current;
+                current = current->next;
+            }
+            if (current != NULL) {
+                if (previous == NULL) {
+                    regle->prem = current->next;
+                } else {
+                    previous->next = current->next;
+                }
+                current->proposition.phrase = NULL;
+                current->next = NULL;
+                free(current);
+            }
+        } else {
+            printf("Erreur lors de la suppression: premisse vide \n");
+        }
     } else {
-        return suppprop(regle->prem->next, asuppProp);
+        printf("Erreur lors de la suppression: regle indefini\n");
     }
 }
 bool estVidePremisse(Regle *regle)
