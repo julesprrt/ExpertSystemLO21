@@ -8,6 +8,7 @@
 #include "Inference/InferenceF.h"
 #include "JeuF/JeuFonction.h"
 
+
 int main() {
     int choixSujet;
     BaseCO *baseCo = creerBase();
@@ -26,13 +27,16 @@ int main() {
     printf("Le systeme ferra ses propres deductions de vos propositions et vous les soumettras.\n");
     printf("Voici les themes disponibles:\n\n\n");
     printf(("1. Les problemes de sante          2. Les couleurs               3. Les villes\n"));
-    printf(("4. Les plats/ingredients           5. La meteo                   6. Les sports  \n"));
+    printf(("4. Les plats/ingredients           5. La meteo                   6. Les sports\n"));
+    printf("7. Vous souhaitez importer votre propre base de Connaissance.  \n");
     printf("\n\n");
     printf("Veuillez choisir un theme en renseignant le numero associe: ");
     scanf("%d", &choixSujet);
     char* nomFichier = getNomFichier(choixSujet);
     baseCo = ReadBaseCOFile(nomFichier);
+    printf("\n\n");
     afficherBC(baseCo);
+    printf("\n\n");
     printf("Combien de faits voulez-vous entrer ?\n ");
     int nbFait;
     scanf("%d", &nbFait);

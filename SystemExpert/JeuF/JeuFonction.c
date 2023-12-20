@@ -24,6 +24,13 @@ char* getNomFichier(int numeroSujet) {
             sprintf(nomFichier, "sport.txt");
             break;
         case 7:
+            printf("Pour importer votre propre base de connaissance.\n");
+            printf("    1.Veuillez d'abord la placer dans le dossier \"basefichier\".\n");
+            printf("    2.Veuillez ensuite saisir le nom du fichier avec lextensition \".txt\":");
+            scanf("%s", nomFichier);
+
+            break;
+        case 8:
             sprintf(nomFichier, "baseCO.txt");
             break;
         default:
