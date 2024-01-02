@@ -106,7 +106,7 @@ Fonction pDansRegle(p: premisse, prop: proposition):booleen
       Si p = INDEFINI alors
           pDansRegle <- FAUX
       Sinon
-          si etat(prop)=etat(valeur(p)) ET nom(prop)=nom(valeur(p)) alors
+          si nom(prop)=nom(valeur(p)) alors
               pDansReglev <- VRAI
           Sinon
               pDansRegle <-pDansRegle(Reste(p),prop)
@@ -165,7 +165,6 @@ Fonction suppProp(R: regle, prop: proposition): regle
                                  Si valeur(cp) =valeur(queue(R)) alors
                                       next(pred(cp)) <- INDEFINI
                                       queue(R) <- pred(cp)
-                                      liberer(nom(valeur(cp))
                                       liberer(cp)
                                       suppProp <-tete(R)  
                                  Sinon 
@@ -308,18 +307,22 @@ Données: BC <br>
 ````
     Fonction ajoutFile(Fait:baseFait,ajout: proposition):baseFait
         Debut
-            newel: bfElement <- CreerElement()
-            input(newel) <- ajout
-            next(newel) <- INDEFINI
-            Si Fait = Indefini alors
-                finAjout:baseFait <- newel
+            Si Fait est Vide alors
+                finAjout:baseFait <- INDEFINI
             Sinon
-                cmp: baseFait <- Fait
-                Tant que next(cmp) != indefini faire
-                    cmp <- next(cmp)
-                Fait 
-                next(cmp) <- newel
-                finAjout <- cmp
+                newel: bfElement <- CreerElement()
+                input(newel) <- ajout
+                next(newel) <- INDEFINI
+                Si Fait = Indefini alors
+                    finAjout:baseFait <- newel
+                Sinon
+                    cmp: baseFait <- Fait
+                    Tant que next(cmp) != indefini faire
+                        cmp <- next(cmp)
+                    Fait 
+                    next(cmp) <- newel
+                    finAjout <- cmp
+                Fin si
             Fin si
         Fin
 ````

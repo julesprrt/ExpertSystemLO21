@@ -59,10 +59,10 @@ bool pDansRegle(premisse p,prop verifProp){
 }
 bool premisseVide(premisse p){
     if(p==NULL){
-        return 1;
+        return true;
     }
     else{
-        return 0;
+        return false;
     }
 }
 //
