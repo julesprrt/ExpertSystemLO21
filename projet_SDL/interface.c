@@ -144,11 +144,14 @@ int menu_acceuil() {
 }
 
 void clean_data(SDL_Window *window,SDL_Renderer *w_renderer,SDL_Texture *background_texture,SDL_Texture *w_texture){
+    SDL_DestroyTexture(background_texture);
+    background_texture = NULL;
+    SDL_DestroyTexture(w_texture);
+    w_texture = NULL;
+    SDL_DestroyRenderer(w_renderer);
+    w_renderer = NULL;
     SDL_DestroyWindow(window);
     window=NULL;
-    SDL_DestroyRenderer(w_renderer);
-    SDL_DestroyTexture(background_texture);
-    SDL_DestroyTexture(w_texture);
 }
 BC base_personnaliser(){
     // declarationdes variables necéssaire
@@ -227,7 +230,7 @@ BC base_personnaliser(){
         free(inputText);
     }
     clean_data(window,w_renderer,background_texture,w_texture);
-    TTF_Quit();
+
     return baseco;
 }
 baseFait recup_fait(){
@@ -304,7 +307,7 @@ baseFait recup_fait(){
         free(inputText);
     }
     clean_data(window,w_renderer,background_texture,w_texture);
-    TTF_Quit();
+
     return Fait;
 }
 void run_inference(baseFait *Fait, BC *connaissance){
@@ -356,5 +359,4 @@ void run_inference(baseFait *Fait, BC *connaissance){
         SDL_Delay(50);
     }
     clean_data(window,w_renderer,background_texture,w_texture);
-    TTF_Quit();
 }

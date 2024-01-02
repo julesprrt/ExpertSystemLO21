@@ -73,4 +73,3 @@ void affichage_ecran(TTF_Font *font, char *text_buffer,SDL_Renderer *w_renderer,
         textSurface = NULL;
     }
 }
-
