@@ -1,0 +1,5 @@
+oeil+rougeur=conjonctivite
+conjonctivite+toux=covid
+vomissement+covid=sauce
+sauce+oeil=urgence
+conjonctivite+oeil=toux
